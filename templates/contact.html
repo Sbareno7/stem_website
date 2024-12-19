@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+    <div class="go-back">
+        <a class="go-back-link" href="index.html">&#8678; Go Back</a>
+    </div>
+    <div class="container" id="contactForm">
+        <div class="row">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="contact-image-container">
+            <img class="contact-image" src="{{ url_for('static', filename='logos/rclogo.png')}}">
+        </div>
+        <div class="row">
+            <h4 style="text-align:center">Runnymede Science Club</h4>
+        </div>
+        <div class="row input-container">
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <input type="text" id="name" required />
+                    <label class="contact-placeholders">Name and Surname</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                    <input type="email" id="email" required />
+                    <label class="contact-placeholders">Email</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <textarea style="font-family:'Poppins', sans-serif, 'arial';" id="message" required></textarea>
+                    <label class="contact-placeholders">Message</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <!-- The button tag for sending the message -->
+                <button class="btn-lrg submit-btn" id="sendMessageButton">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+        publicKey: "c3fMmSwdyQOSYPNB1",
+        });
+    })();
+    </script>
+
+    <script>
+            // Handle form submission
+        document.getElementById('sendMessageButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            var templateParams = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Validate that fields are not empty
+            if (!templateParams.name || !templateParams.email || !templateParams.message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Send email using EmailJS
+            emailjs.send('service_izri1jx', 'template_yomshuj', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Your message has been sent successfully!');
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('Failed to send the message. Please try again later.');
+                });
+        });
+    </script>
+{% endblock %}
