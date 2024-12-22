@@ -19,7 +19,7 @@
 
 @keyframes swipe-left {
     0% {
-        left: -600px; /* Starting off-screen */
+        left: -100px; /* Starting off-screen */
     }
     100% {
         left: 20px; /* Stop at 200px from the left edge of the viewport */
