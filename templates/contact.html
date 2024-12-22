@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+    <div class="container" id="contactForm">
+        <div class="row">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="contact-image-container">
+            <img class="contact-image" src="{{ url_for('static', filename='logos/rclogo.png')}}">
+        </div>
+        <div class="row">
+            <h4 style="text-align:center">Runnymede STEM Club</h4>
+        </div>
+        <div class="row input-container">
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <input type="text" id="name" required />
+                    <label class="contact-placeholders">Name and Surname</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                    <input type="email" id="email" required />
+                    <label class="contact-placeholders">Email</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <textarea style="font-family:'Poppins', sans-serif, 'arial';" id="message" required></textarea>
+                    <label class="contact-placeholders">Message</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <!-- The button tag for sending the message -->
+                <button class="btn-lrg submit-btn" id="sendMessageButton">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
